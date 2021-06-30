@@ -17,12 +17,15 @@ pub fn get_user_input(prompt: &str) -> io::Result<String> {
 }
 
 pub fn choose_command() -> Option<Command> {
-    match get_user_input("\n\nAvailable commands:\n + -> Add todo | - -> Delete ")
+    match get_user_input("\n\n## Available commands:\n + -> Add todo | - -> Delete ")
         .unwrap()
-        .as_str()
+        .trim()
     {
         "+" => Some(Command::Add),
         "-" => Some(Command::Delete),
-        _ => None,
+        _ => {
+            println!("Not an available command. Try again...\n");
+            None
+        }
     }
 }
