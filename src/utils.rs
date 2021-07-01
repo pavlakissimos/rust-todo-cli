@@ -3,6 +3,7 @@ use std::io;
 pub enum Command {
     Add,
     Delete,
+    Edit,
 }
 
 /// Get input from terminal.
@@ -17,12 +18,15 @@ pub fn get_user_input(prompt: &str) -> io::Result<String> {
 }
 
 pub fn choose_command() -> Option<Command> {
-    match get_user_input("\n\n## Available commands:\n + -> Add todo | - -> Delete ")
-        .unwrap()
-        .trim()
+    match get_user_input(
+        "\n\n## Available commands:\n + -> Add todo | - -> Delete todo | E -> Edit todo",
+    )
+    .unwrap()
+    .trim()
     {
         "+" => Some(Command::Add),
         "-" => Some(Command::Delete),
+        "E" => Some(Command::Edit),
         _ => {
             println!("Not an available command. Try again...\n");
             None
