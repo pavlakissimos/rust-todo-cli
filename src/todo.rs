@@ -1,6 +1,5 @@
 use chrono::{DateTime, Utc};
 use nanoid::nanoid;
-use std::cmp::PartialEq;
 
 #[derive(Debug, Clone)]
 pub struct Todo {
