@@ -1,9 +1,10 @@
 use chrono::{DateTime, Utc};
 use nanoid::nanoid;
+use std::cmp::PartialEq;
 
 #[derive(Debug, Clone)]
 pub struct Todo {
-  id: String,
+  pub id: String,
   pub name: String,
   pub creation_date: DateTime<Utc>,
 }

@@ -7,14 +7,15 @@ pub enum Command {
 }
 
 /// Get input from terminal.
-pub fn get_user_input(prompt: &str) -> io::Result<String> {
+pub fn get_user_input(prompt: &str) -> Option<String> {
     let mut input = String::new();
 
     println!("{}", prompt);
 
-    io::stdin().read_line(&mut input)?;
-
-    Ok(input.trim().to_string())
+    match io::stdin().read_line(&mut input) {
+        Ok(_) => Some(input.trim().to_string()),
+        Err(_) => None,
+    }
 }
 
 pub fn choose_command() -> Option<Command> {
